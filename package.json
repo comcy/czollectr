@@ -1,0 +1,19 @@
+{
+  "name": "cllpscrwlr",
+  "version": "1.0.0",
+  "description": "This is a tool which crawls through a `json`-structured object and creates a static site using `ejs` templates.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comcy/CLLPSCRWLR.git"
+  },
+  "author": "Christian Silfang (comcy)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/comcy/CLLPSCRWLR/issues"
+  },
+  "homepage": "https://github.com/comcy/CLLPSCRWLR#readme"
+}
