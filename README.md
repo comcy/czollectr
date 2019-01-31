@@ -1,8 +1,8 @@
-# CLLPSCRWLR
+# czollectr
 
 **Content**
 
-- [CLLPSCRWLR](#cllpscrwlr)
+- [czollectr](#czollectr)
   - [Idea](#idea)
   - [Installation](#installation)
   - [Usage](#usage)
