@@ -3,6 +3,7 @@
 import { License, asciiArt } from './models';
 
 export class LicenseCollector {
+
   input: string;
   packages = [];
 
@@ -28,6 +29,20 @@ export class LicenseCollector {
       };
       this.packages.push(temp);
     });
+
+    this.createPage();
+  }
+
+  createPage() {
+
+    const licensePage = ejs.render(
+      layoutData,
+      Object.assign({}, templateConfig, {
+        body: pageContent,
+        filename: layoutFileName
+      })
+    );
+
   }
 
 }
