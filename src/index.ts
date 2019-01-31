@@ -49,5 +49,5 @@ export class LicenseCollector {
 
 const argv: string[] = process.argv.slice(2);
 
-const collector = new LicenseCollector('../sample-licenses.json');
+const collector = new LicenseCollector('./sample-files/sample-licenses.json');
 collector.init();
