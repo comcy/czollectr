@@ -1,0 +1,12 @@
+
+node_modules/
+
+# Javascript files 
+src/**/*.js
+src/**/*.d.ts
+
+# Generated css files
+styles/css
+
+# dist folder
+dist

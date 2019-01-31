@@ -1,0 +1,11 @@
+@import '_colors';
+
+body {
+    padding-top: 10px;
+}
+
+.content {
+  display: none;
+  overflow: hidden;
+  background-color: $c04;
+}

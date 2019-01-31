@@ -1,21 +1,38 @@
 #!/usr/bin/env node
 
-var argv = require('minimist')(process.argv.slice(2));
+import { License, asciiArt } from './models';
 
-// TODO: Do some hints for app arguments
+export class LicenseCollector {
+  input: string;
+  packages = [];
 
-const input: string = argv.i; // -i: input parameter
-const output: string = argv.o; // -o: output parameter
-const type: string = argv.t; // -t: file type parameter
+  constructor(input: string) {
+    this.input = input;
+  }
 
-if (type === 'html' || type === '') {
-//   const inputMarkdown = readFile(input, 'utf-8');
-//   const outputHtml = converter.makeHtml(inputMarkdown);
-//   writeHtml(output, outputHtml, 'utf-8');
+  init() {
+    console.log(asciiArt);
+    
+    this.readFile();
+  }
+
+  readFile() {
+    const jsonFile = require(this.input);
+
+    Object.keys(jsonFile).forEach(key => {
+      const temp: License = {
+        name: jsonFile[key].name,
+        version: jsonFile[key].version,
+        licenses: jsonFile[key].licenses,
+        licenseText: jsonFile[key].licenseText
+      };
+      this.packages.push(temp);
+    });
+  }
+
 }
 
-if (type === 'pdf') {
-//   const outputPdf = output;
-//   const inputHtml = readFile(input, 'utf-8');
-//   generatePdf(inputHtml, outputPdf);
-}
+const argv: string[] = process.argv.slice(2);
+
+const collector = new LicenseCollector('../sample-licenses.json');
+collector.init();
