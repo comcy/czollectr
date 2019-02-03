@@ -5,7 +5,19 @@ body {
 }
 
 .content {
-  display: none;
-  overflow: hidden;
-  background-color: $c04;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 50px;
+    min-height: 100%;
+}
+
+.header {
+    position: sticky;
+}
+
+.footer {
+    background-color: $c02;
+    text-color {
+        color: $c01;
+    }
 }

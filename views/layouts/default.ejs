@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+
+  <body>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <header>
+      <%- include('../partials/header') %>
+    </header>
+    <section class="content">
+      <% body.forEach( ( item ) => { %>
+      <button class="collapsible">
+        <b><%= item.name %></b> - <i><%= item.version %></i> | <%= item.licenses
+        %>
+      </button>
+      <div class="expand">
+        <p><%- item.licenseText -%></p>
+      </div>
+      <% }) %>
+      <script type="text/javascript">
+        var coll = document.getElementsByClassName('collapsible');
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener('click', function() {
+            console.log('click');
+            this.classList.toggle('active');
+            var expand = this.nextElementSibling;
+            if (expand.style.display === 'none') {
+              expand.style.display = 'block';
+            } else {
+              expand.style.display = 'none';
+            }
+          });
+        }
+      </script>
+    </section>
+
+    <footer class="footer">
+      <%- include('../partials/footer') %>
+    </footer>
+  </body>
+</html>
