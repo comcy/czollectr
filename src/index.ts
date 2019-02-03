@@ -5,6 +5,7 @@ import * as mkdirp from 'mkdirp';
 import * as fse from 'fs-extra';
 import * as ejs from 'ejs';
 import { License, asciiArt } from './models';
+import { isEmptyNullUndefined } from './helpers';
 
 export class LicenseCollector {
   input: string;
@@ -14,7 +15,7 @@ export class LicenseCollector {
 
   constructor(input: string, output: string) {
     this.input = input;
-    if (output === '') {
+    if (output === '' || isEmptyNullUndefined(output)) {
       this.output = './publish';
     } else {
       this.output = output;
@@ -42,7 +43,7 @@ export class LicenseCollector {
       };
       this.packages.push(temp);
     });
-    console.log(this.packages);
+    // console.log(this.packages);
     this.createPage();
   }
 
@@ -55,14 +56,22 @@ export class LicenseCollector {
     );
 
     mkdirp(this.output);
-    fse.copy(`./assets`, `${this.output}/assets`);
+
+    fse.copy('./assets', `${this.output}/assets`, function (err) {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log("success!");
+      }
+    });
+    
+    // fse.copy('./assets/styles.css', `${this.output}/assets/styles.css`);
 
     // Read styles
     // const styleFileName = `./assets/styles.css`;
     // const styleData = fs.readFileSync(styleFileName, 'utf-8');
     // fs.writeFileSync(`./publish/styles.css`, styleData, 'utf-8');
 
-    // Read layout file name
     const layoutFileName = `./views/layouts/default.ejs`;
     const layoutData = fs.readFileSync(layoutFileName, 'utf-8');
 
@@ -83,5 +92,5 @@ const argv: string[] = process.argv.slice(2);
 console.log('input:', argv[0]);
 console.log('output:', argv[1]);
 
-const collector = new LicenseCollector(`${argv[0]}`, `${argv[1]}`);
+const collector = new LicenseCollector(`../${argv[0]}`, `${argv[1]}`);
 collector.init();
