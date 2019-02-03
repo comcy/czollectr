@@ -75,16 +75,7 @@ export class LicenseCollector {
   }
 }
 
-const argv: string[] = process.argv;
+const argv: string[] = process.argv.slice(2);
 
-console.log(__filename);
-console.log(__dirname);
-console.log(process.argv);
-
-// console.log('path:', argv[0]);
-// console.log('name:', argv[1]);
-// console.log('input:', argv[2]);
-// console.log('output:', argv[3]);
-
-const collector = new LicenseCollector(`../${argv[2]}`, `${argv[3]}`);
+const collector = new LicenseCollector(`../${argv[0]}`, `${argv[1]}`);
 collector.init();
