@@ -10,12 +10,13 @@ import { isEmptyNullUndefined } from './helpers';
 export class LicenseCollector {
   input: string;
   output: string;
+  srcDirname: string;
   packages = [];
-  baseHref = '..';
 
   constructor(input: string, output: string) {
+    this.srcDirname = __dirname;
     this.input = input;
-    if (output === '' || isEmptyNullUndefined(output)) {
+    if (isEmptyNullUndefined(output)) {
       this.output = './publish';
     } else {
       this.output = output;
@@ -56,23 +57,10 @@ export class LicenseCollector {
     );
 
     mkdirp(this.output);
-
-    fse.copy('./assets', `${this.output}/assets`, function (err) {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log("success!");
-      }
-    });
     
-    // fse.copy('./assets/styles.css', `${this.output}/assets/styles.css`);
+    fse.copy(`${this.srcDirname}/assets`, `${this.output}/assets`);
 
-    // Read styles
-    // const styleFileName = `./assets/styles.css`;
-    // const styleData = fs.readFileSync(styleFileName, 'utf-8');
-    // fs.writeFileSync(`./publish/styles.css`, styleData, 'utf-8');
-
-    const layoutFileName = `./views/layouts/default.ejs`;
+    const layoutFileName = `${this.srcDirname}/views/layouts/default.ejs`;
     const layoutData = fs.readFileSync(layoutFileName, 'utf-8');
 
     const page = ejs.render(
@@ -87,10 +75,16 @@ export class LicenseCollector {
   }
 }
 
-const argv: string[] = process.argv.slice(2);
+const argv: string[] = process.argv;
 
-console.log('input:', argv[0]);
-console.log('output:', argv[1]);
+console.log(__filename);
+console.log(__dirname);
+console.log(process.argv);
 
-const collector = new LicenseCollector(`../${argv[0]}`, `${argv[1]}`);
+// console.log('path:', argv[0]);
+// console.log('name:', argv[1]);
+// console.log('input:', argv[2]);
+// console.log('output:', argv[3]);
+
+const collector = new LicenseCollector(`../${argv[2]}`, `${argv[3]}`);
 collector.init();
