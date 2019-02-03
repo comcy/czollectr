@@ -8,11 +8,17 @@ import { License, asciiArt } from './models';
 
 export class LicenseCollector {
   input: string;
+  output: string;
   packages = [];
   baseHref = '..';
 
-  constructor(input: string) {
+  constructor(input: string, output: string) {
     this.input = input;
+    if (output === '') {
+      this.output = './publish';
+    } else {
+      this.output = output;
+    }
   }
 
   init() {
@@ -48,6 +54,9 @@ export class LicenseCollector {
       }
     );
 
+    mkdirp(this.output);
+    fse.copy(`./assets`, `${this.output}/assets`);
+
     // Read styles
     // const styleFileName = `./assets/styles.css`;
     // const styleData = fs.readFileSync(styleFileName, 'utf-8');
@@ -65,14 +74,14 @@ export class LicenseCollector {
       })
     );
 
-    mkdirp(`./publish`);
-    fs.writeFileSync(`. / publish / index.html`, page, 'utf-8');
+    fse.writeFileSync(`${this.output}/index.html`, page, 'utf-8');
   }
 }
 
 const argv: string[] = process.argv.slice(2);
 
-console.log('argument:', argv[0]);
+console.log('input:', argv[0]);
+console.log('output:', argv[1]);
 
-const collector = new LicenseCollector(`${argv[0]}`);
+const collector = new LicenseCollector(`${argv[0]}`, `${argv[1]}`);
 collector.init();
