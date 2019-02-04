@@ -80,7 +80,5 @@ export class LicenseCollector {
 
 const argv: string[] = process.argv.slice(2);
 
-console.log(process.cwd());
-
 const collector = new LicenseCollector(argv[0], argv[1]);
 collector.init();
