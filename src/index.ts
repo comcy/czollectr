@@ -15,11 +15,14 @@ export class LicenseCollector {
 
   constructor(input: string, output: string) {
     this.srcDirname = __dirname;
-    this.input = input;
+    
+    const baseHref = process.cwd(); 
+
+    this.input = `${baseHref}/${input}`;
     if (isEmptyNullUndefined(output)) {
-      this.output = './publish';
+      this.output = `${baseHref}/publish`;
     } else {
-      this.output = output;
+      this.output = `${baseHref}/${output}`;
     }
   }
 
@@ -77,5 +80,7 @@ export class LicenseCollector {
 
 const argv: string[] = process.argv.slice(2);
 
-const collector = new LicenseCollector(`../${argv[0]}`, `${argv[1]}`);
+console.log(process.cwd());
+
+const collector = new LicenseCollector(argv[0], argv[1]);
 collector.init();
