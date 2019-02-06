@@ -15,8 +15,8 @@ export class LicenseCollector {
 
   constructor(input: string, output: string) {
     this.srcDirname = __dirname;
-    
-    const baseHref = process.cwd(); 
+
+    const baseHref = process.cwd();
 
     this.input = `${baseHref}/${input}`;
     if (isEmptyNullUndefined(output)) {
@@ -43,11 +43,10 @@ export class LicenseCollector {
         url: jsonFile[key].url,
         copyright: jsonFile[key].copyright,
         licenses: jsonFile[key].licenses,
-        licenseText: jsonFile[key].licenseText // = jsonFile[key].licenseText.replace(/\n/g, '<br />')
+        licenseText: jsonFile[key].licenseText
       };
       this.packages.push(temp);
     });
-    // console.log(this.packages);
     this.createPage();
   }
 
@@ -60,7 +59,7 @@ export class LicenseCollector {
     );
 
     mkdirp(this.output);
-    
+
     fse.copy(`${this.srcDirname}/assets`, `${this.output}/assets`);
 
     const layoutFileName = `${this.srcDirname}/views/layouts/default.ejs`;
