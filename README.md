@@ -2,6 +2,8 @@
 
 [![Build Status](https://comcy.visualstudio.com/Tools/_apis/build/status/%5BCI%5D%20czollectr_master?branchName=master)](https://comcy.visualstudio.com/Tools/_build/latest?definitionId=3&branchName=master)
 
+[![npm version](https://badge.fury.io/js/czollectr.svg)](https://badge.fury.io/js/czollectr)
+
 **Content**
 
 - [czollectr](#czollectr)
