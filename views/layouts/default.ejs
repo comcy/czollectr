@@ -26,7 +26,11 @@
     <section class="content">
       <% body.forEach( ( item ) => { %>
       <button class="collapsible">
+        <% if( item.version !== '' && item.version !== null && item.version !== undefined && item.licenses !== '' && item.licenses !== null && item.licenses !== undefined ) {%>
         <b><%= item.name %></b> - <i> <%= item.version %></i> | <%= item.licenses %> 
+        <% } else { %>
+        <b><%= item.name %></b> 
+        <% } %>
       </button>
       <div class="expand">
         <p><%- item.licenseText -%></p>
