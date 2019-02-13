@@ -26,8 +26,7 @@
     <section class="content">
       <% body.forEach( ( item ) => { %>
       <button class="collapsible">
-        <b><%= item.name %></b> - <i><%= item.version %></i> | <%= item.licenses
-        %>
+        <b><%= item.name %></b> - <i> <%= item.version %></i> | <%= item.licenses %> 
       </button>
       <div class="expand">
         <p><%- item.licenseText -%></p>

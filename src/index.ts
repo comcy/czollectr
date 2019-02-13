@@ -51,6 +51,10 @@ export class LicenseCollector {
   }
 
   createPage() {
+    
+    console.log(this.packages);
+
+
     const templateConfig = Object.assign(
       {},
       {

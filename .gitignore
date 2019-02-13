@@ -12,3 +12,5 @@ styles/css
 
 # dist folder
 dist
+
+.vscode-janus-debug
