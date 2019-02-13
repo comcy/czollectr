@@ -1,6 +1,6 @@
 {
   "name": "czollectr",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "This tool loads a `json`-structured license object and creates a static site using `ejs` templates.",
   "main": "index.js",
   "bin": {
