@@ -5,7 +5,6 @@ import * as mkdirp from 'mkdirp';
 import * as fse from 'fs-extra';
 import * as ejs from 'ejs';
 import { License, asciiArt } from './models';
-import { isEmptyNullUndefined } from './helpers';
 
 export class LicenseCollector {
   input: string;
@@ -19,7 +18,7 @@ export class LicenseCollector {
     const baseHref = process.cwd();
 
     this.input = `${baseHref}/${input}`;
-    if (isEmptyNullUndefined(output)) {
+    if (output) {
       this.output = `${baseHref}/publish`;
     } else {
       this.output = `${baseHref}/${output}`;
